@@ -96,10 +96,9 @@ async function getHTMLfromPuppeteerPage(browser, pageUrl, options) {
   try {
     const page = await browser.newPage();
 
-    await page.goto(
-      pageUrl,
-      Object.assign({ waitUntil: 'networkidle0' }, options),
-    );
+    const mergedOptions = Object.assign(options, { waitUntil: 'networkidle0' });
+    console.dir(mergedOptions);
+    await page.goto(pageUrl, mergedOptions);
 
     const html = await page.content();
     if (!html) return 0;
