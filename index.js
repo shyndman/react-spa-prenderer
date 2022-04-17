@@ -95,9 +95,12 @@ async function createNewHTMLPage(route, html, dir, outFileSuffix) {
 async function getHTMLfromPuppeteerPage(browser, pageUrl, options) {
   try {
     const page = await browser.newPage();
+    if (options.userAgent) {
+      console.log(`Setting user agent to ${options.userAgent}`);
+      await page.setUserAgent(options.userAgent);
+    }
 
     const mergedOptions = Object.assign(options, { waitUntil: 'networkidle0' });
-    console.dir(mergedOptions);
     await page.goto(pageUrl, mergedOptions);
 
     const html = await page.content();
