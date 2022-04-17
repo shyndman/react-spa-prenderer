@@ -13,6 +13,7 @@ module.exports = function (options) {
     routes: options.routes || [],
     port: options.port || 3000,
     buildDirectory: options.buildDirectory || './build',
+    outFileSuffix: options.outFileSuffix || '',
     engine
   };
 };
